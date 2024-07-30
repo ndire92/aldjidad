@@ -1,0 +1,172 @@
+
+.body {
+    background-color: #f8f9fa;
+}
+
+.sidebar {
+    background-color: #343a40;
+    color: #ffffff;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 250px;
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    border-bottom: 1px solid #444a50;
+}
+
+.sidebar ul li a {
+    color: #444a50;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a {
+  
+    color: #444a50;
+}
+
+.profile {
+    text-align: center; /* Centre l'image horizontalement */
+    padding-top: 20px; /* Ajoute de l'espace au-dessus de l'image */
+}
+
+.profile img {
+    max-width: 50%; /* Limite la largeur de l'image à 50% de la largeur du parent */
+    display: block; /* Pour aligner correctement l'image */
+    margin: 0 auto; /* Centre l'image horizontalement */
+}
+
+.sidebar .profile h4 {
+    margin: 0;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.main-card {
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.card .db-icon {
+    font-size: 2rem;
+}
+
+.card .db-info h3 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.card .db-info h6 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: normal;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+    .card {
+        margin-bottom: 20px;
+    }
+}
+.custom-color {
+  
+    color: #444a50; /* Change la couleur du texte pour une meilleure lisibilité */
+}
+/* Ajoutez ce CSS à votre fichier style.css ou dans une balise <style> dans votre template */
+
+/* Style pour les cellules du tableau */
+.table td, .table th {
+    padding: 12px;
+    vertical-align: middle;
+}
+
+/* Style pour les en-têtes de colonne */
+.table thead th {
+    background-color: #f8f9fa; /* Couleur de fond */
+    color: #495057; /* Couleur du texte */
+    font-weight: bold; /* Gras */
+    border-bottom: 2px solid #dee2e6; /* Bordure inférieure */
+}
+
+/* Style pour les lignes impaires */
+.table tbody tr:nth-child(odd) {
+    background-color: #f3f4f6; /* Couleur de fond */
+}
+
+/* Style pour les boutons d'action */
+.btn {
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+/* Style pour les boutons Modifier */
+.btn-warning {
+    background-color: #ffc107; /* Couleur de fond */
+    border-color: #ffc107; /* Couleur de bordure */
+}
+
+/* Style pour les boutons Supprimer */
+.btn-danger {
+    background-color: #dc3545; /* Couleur de fond */
+    border-color: #dc3545; /* Couleur de bordure */
+}
+.main-card {
+    border: 1px solid #557029;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+.table thead {
+    background-color: #557029;
+    color: white;
+}
+.table th, .table td {
+    vertical-align: middle;
+}
+.btn-primary {
+    background-color: #557029;
+    border-color: #557029;
+}
+.btn-primary:hover {
+    background-color: #445522;
+    border-color: #445522;
+}
+.pagination .page-item.active .page-link {
+    background-color: #557029;
+    border-color: #557029;
+}

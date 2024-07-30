@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supprimer un Bureau National</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Supprimer un Bureau National</h2>
+    <p>Êtes-vous sûr de vouloir supprimer {{ bureau.nom }} {{ bureau.prenom }} ?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+        <a href="{% url 'list_bureau_national' %}" class="btn btn-secondary">Annuler</a>
+    </form>
+</div>
+</body>
+</html>

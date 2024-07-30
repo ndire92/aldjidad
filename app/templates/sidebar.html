@@ -1,0 +1,64 @@
+<div class="sidebar">
+    <!-- Profile section -->
+    <div class="profile">
+        <img class="w-50 d-block" src="/static/image/logo.png" alt="User Profile Picture">
+                           
+    
+        <h4>Dahiratoul Muqtafina</h4>
+        <p>bi âssaril abâ'i wal ajdâd</p>
+    </div>
+    <!-- Navigation -->
+    <ul class="list-group">
+        <li class="list-group-item"><a href="{% url 'membre_stats'%}">Accueil</a></li>
+        <li class="list-group-item dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Structure</a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item"><a href="{% url 'coordinations' %}">Coordinations</a></li>
+                <li class="dropdown-item"><a href="{% url 'sections' %}">Section</a></li>
+                <li class="dropdown-item"><a href="{% url 'secteurs' %}">Secteur</a></li>
+                <li class="dropdown-item"><a href="{% url 'commission_create'%}">Commissions</a></li>
+
+            </ul>
+        </li>
+        <li class="list-group-item"><a href="{% url 'list_bureau_national' %}">Liste Bureau National</a></li>
+        <li class="list-group-item dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Commissions</a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item"><a href="{% url 'list_commission_org' %}">Organisations</a></li>
+                <li class="dropdown-item"><a href="{% url 'list_commission_fem' %}">Cellule Feminin</a></li>
+                <li class="dropdown-item"><a href="{% url 'list_commission_commu' %}">Communication</a></li>
+                <li class="dropdown-item"><a href="{% url 'list_commission_cul' %}">Culturelle</a></li>
+                <li class="dropdown-item"><a href="{% url 'list_commission_social' %}">Action Social</a></li>
+                <li class="dropdown-item"><a href="{% url 'list_commission_decen' %}">Decentralisation</a></li>
+                <li class="dropdown-item"><a href="#">Secretariat</a></li>
+                <li class="dropdown-item"><a href="#">Cadettes</a></li>
+            </ul>
+        </li>
+        <li class="list-group-item dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Membres</a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item"><a href="{% url 'bureau_form' %}">Ajouter un membre BN</a></li>
+                <li class="dropdown-item"><a href="{% url 'ajouter_membres' %}">Ajouter un membre</a></li>
+            </ul>
+        </li>
+        <li class="list-group-item"><a href="{% url 'liste_membres'%}">Membres</a></li>
+    </ul>
+    <!-- Quick Stats -->
+    <div class="quick-stats mt-4">
+        <h5>Statistiques rapides</h5>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center custom-color">
+                Total Membres
+                <span class="badge badge-primary badge-pill">{{ total_membres }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center custom-color">
+                Total Coordinations
+                <span class="badge badge-success badge-pill">{{ total_coordinations }}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center custom-color">
+                Total Sections
+                <span class="badge badge-warning badge-pill">{{ total_sections }}</span>
+            </li>
+        </ul>
+    </div>
+</div>

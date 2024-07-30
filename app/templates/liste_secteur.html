@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Secteurs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Liste des Secteurs</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Secteur</th>
+                <th>Section</th>
+                <!-- Ajoutez d'autres en-têtes de colonnes si nécessaire -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for secteur in secteurs %}
+            <tr>
+                <td>{{ secteur.nom }}</td>
+                <td>{{ secteur.section.nom }}</td>
+                <!-- Ajoutez d'autres cellules de colonnes si nécessaire -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pagination justify-content-center mt-4">
+        <ul class="pagination">
+            {% if secteurs.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">Premier</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ secteurs.previous_page_number }}">Précédent</a></li>
+            {% endif %}
+            {% for num in secteurs.paginator.page_range %}
+                <li class="page-item {% if num == secteurs.number %}active{% endif %}"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+            {% endfor %}
+            {% if secteurs.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ secteurs.next_page_number }}">Suivant</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ secteurs.paginator.num_pages }}">Dernier</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

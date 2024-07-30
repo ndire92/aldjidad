@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Commissions cul</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                {% include 'sidebar.html' %}
+            </div>
+            <!-- Main Content -->
+            <div class="col-md-9 main-content">
+                <div class="container my-4">
+                    <div class="card main-card">
+                        <div class="card-body">
+                            <h2 class="mb-4">Liste des membres </h2>
+                            <a href="{% url 'create_commission_cul' %}" class="btn btn-primary mb-3">Ajouter un membre</a>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Numéro</th>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Âge</th>
+                                            <th>Adresse</th>
+                                            <th>Profession</th>
+                                            <th>Fonction</th>
+                                            <th>Mobile</th>
+                                            <th>Coordination</th>
+                                            <th>Secteur</th>
+                                            <th>Section</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for commission in commissioncul %}
+                                        <tr>
+                                            <td>{{ commission.id }}</td>
+                                            <td>{{ commission.nom }}</td>
+                                            <td>{{ commission.prenom }}</td>
+                                            <td>{{ commission.age }}</td>
+                                            <td>{{ commission.adresse }}</td>
+                                            <td>{{ commission.profession }}</td>
+                                            <td>{{ commission.fonction }}</td>
+                                            <td>{{ commission.mobile }}</td>
+                                            <td>{{ commission.coordination.nom }}</td>
+                                            <td>{{ commission.secteur.nom }}</td>
+                                            <td>{{ commission.section.nom }}</td>
+                                            <td>
+                                                <a href="{% url 'update_commission_cul' commission.pk %}" class="btn btn-warning">Modifier</a>
+                                                <a href="{% url 'delete_commission_cul' commission.pk %}" class="btn btn-danger">Supprimer</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination justify-content-center">
+                                <ul class="pagination">
+                                    {% if commissions.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?page=1">Premier</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page={{ commissions.previous_page_number }}">Précédent</a></li>
+                                    {% endif %}
+                                    {% for num in commissions.paginator.page_range %}
+                                        <li class="page-item {% if num == commissions.number %}active{% endif %}">
+                                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                        </li>
+                                    {% endfor %}
+                                    {% if commissions.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ commissions.next_page_number }}">Suivant</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page={{ commissions.paginator.num_pages }}">Dernier</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

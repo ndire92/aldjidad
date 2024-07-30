@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Commissions Org</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .main-card {
+            border: 1px solid #557029;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .table thead {
+            background-color: #557029;
+            color: white;
+        }
+        .table th, .table td {
+            vertical-align: middle;
+        }
+        .btn-primary {
+            background-color: #557029;
+            border-color: #557029;
+        }
+        .btn-primary:hover {
+            background-color: #445522;
+            border-color: #445522;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: #557029;
+            border-color: #557029;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                {% include 'sidebar.html' %}
+            </div>
+            <!-- Main Content -->
+            <div class="col-md-9 main-content">
+                <div class="container my-4">
+                    <div class="card main-card">
+                        <div class="card-body">
+                            
+                            <h2 class="mb-4">Liste des membres du bureau national</h2>
+                            <a href="{% url 'bureau_form' %}" class="btn btn-primary mb-3">Ajouter une membre</a>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Prénom</th>
+                                            <th>Âge</th>
+                                            <th>Adresse</th>
+                                            <th>Coordination</th>
+                                            <th>Secteur</th>
+                                            <th>Section</th>
+                                            <th>Profession</th>
+                                            <th>Fonction</th>
+                                            <th>Mobile</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for bureau in page_obj %}
+                                        <tr>
+                                            <td>{{ bureau.nom }}</td>
+                                            <td>{{ bureau.prenom }}</td>
+                                            <td>{{ bureau.age }}</td>
+                                            <td>{{ bureau.adresse }}</td>
+                                            <td>{{ bureau.coordination.nom }}</td>
+                                            <td>{{ bureau.secteur.nom }}</td>
+                                            <td>{{ bureau.section.nom }}</td>
+                                            <td>{{ bureau.profession }}</td>
+                                            <td>{{ bureau.fonction }}</td>
+                                            <td>{{ bureau.mobile }}</td>
+                                            <td>
+                                                <a href="{% url 'update_bureau_national' bureau.pk %}" class="btn btn-warning btn-sm">Modifier</a>
+                                                <a href="{% url 'delete_bureau_national' bureau.pk %}" class="btn btn-danger btn-sm">Supprimer</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="pagination justify-content-center">
+                                <ul class="pagination">
+                                    {% if page_obj.has_previous %}
+                                        <li class="page-item"><a class="page-link" href="?page=1">Premier</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Précédent</a></li>
+                                    {% endif %}
+                                    {% for num in page_obj.paginator.page_range %}
+                                        <li class="page-item {% if num == page_obj.number %}active{% endif %}">
+                                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                                        </li>
+                                    {% endfor %}
+                                    {% if page_obj.has_next %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Suivant</a></li>
+                                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Dernier</a></li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

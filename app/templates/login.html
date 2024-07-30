@@ -1,0 +1,129 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row pt-5">
+            <!-- Colonne de gauche -->
+            <div class="col-md-6 col-sm-12 custom-margin">
+                <div class="position-relative h-100 mb-4">
+                    <div class="card" style="border-radius: 16px; background:#1da8dd; padding: 16px; height: 100%;">
+                        <h2 class="text-center mb-4">Connexion</h2> <!-- Ajout du titre -->
+                        <div class="login-card mb-3" style="margin-top: 7px;">
+                            <img class="profile-img-card mx-auto d-block" src="{% static 'ass/img/brands/logo_mairiejoal.png' %}" style="height: 100px; width: 100px;"> <!-- Ajustez la valeur de margin-top selon vos besoins -->
+                            <form class="form-signin" style="margin-top:20px;" action="{% url 'login' %}" method="post">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="username" class="form-label" style="color: black;">Nom d'utilisateur</label>
+                                    <input type="text" class="form-control" id="username" name="username" required="" style="border: 4px solid #1da8dd; border-radius: 100px;">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password" class="form-label" style="color: black;">Mot de Passe</label>
+                                    <input class="form-control" type="password" id="inputPassword" required="" name="password" style="border: 4px solid #1da8dd; border-radius: 100px;">
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="showPasswordCheckbox" onclick="togglePassword()">
+                                    <label class="form-check-label" for="showPasswordCheckbox">Afficher le mot de passe</label>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
+                            </form>
+                            <div class="text-center mt-3">
+                                <a href="">Mot de passe oublié ?</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Colonne de droite -->
+            <div class="col-md-6 col-sm-12 custom-margin">
+                <div class="position-relative h-100 mb-4">
+                    <div class="card" style="border-radius: 16px; background:#1da8dd; padding: 16px; height: 100%;">
+                        <h2 class="text-center mb-3">Ville de Joal-Fadiouth</h2> <!-- Ajout du titre -->
+                        <div class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img class="w-100 d-block" style="height: 83%" src="{% static 'ass/img/img-1196-2%402x.png' %}" alt="Slide Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .pt-5 {
+            padding-top: 3rem !important;
+        }
+        .custom-margin {
+            margin-top: 20px; /* Ajoutez une marge en haut pour l'espace entre les colonnes */
+        }
+        .card {
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        }
+        .login-card {
+            padding: 40px;
+            background-color: #F7F7F7;
+            border-radius: 30px;
+        }
+
+        .profile-img-card {
+            width: 70%;
+        }
+
+        .form-signin input[type="text"],
+        .form-signin input[type="password"],
+        .form-signin button {
+            height: 44px;
+            font-size: 16px;
+            width: 100%;
+            display: block;
+            margin-bottom: 10px;
+            z-index: 1;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .form-signin input[type="text"],
+        .form-signin input[type="password"] {
+            border: 4px solid #1da8dd;
+            border-radius: 100px;
+        }
+
+        .form-signin button {
+            border-radius: 100px;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+    <script>
+        function togglePassword() {
+            var passwordInput = document.getElementById("inputPassword");
+            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

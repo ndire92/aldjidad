@@ -1,0 +1,143 @@
+
+
+  
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>liste des membres</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-md-3">
+                {% include 'sidebar.html' %}
+            </div>
+          <!-- Main Content -->
+          <div class="col-md-9 main-content">
+            <div class="container my-4">
+                <div class="card main-card">
+                    <div class="card-body">
+                        <h2 class="mb-4">Liste des Membres</h2>
+        <input type="text" id="searchInput" class="form-control mb-4" placeholder="Rechercher...">
+        <div class="table-responsive">
+            <table class="table table-striped" id="membresTable">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Âge</th>
+                        <th>Adresse</th>
+                        <th>Coordination</th>
+                        <th>Secteur</th>
+                        <th>Section</th>
+                        <th>Profession</th>
+                        <th>Fonction</th>
+                        <th>Téléphone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for membre in membres %}
+                    <tr>
+                        <td>{{ membre.id }}</td>
+                        <td>{{ membre.nom }}</td>
+                        <td>{{ membre.prenom }}</td>
+                        <td>{{ membre.age }}</td>
+                        <td>{{ membre.adresse }}</td>
+                        <td>{{ membre.coordination }}</td>
+                        <td>{{ membre.secteur }}</td>
+                        <td>{{ membre.section }}</td>
+                        <td>{{ membre.profession }}</td>
+                        <td>{{ membre.fonction }}</td>
+                        <td>{{ membre.mobile }}</td>
+                        <td>
+                            <a href="{% url 'update_membre' membre.pk %}" class="btn btn-warning btn-sm">Modifier</a>
+                            <a href="{% url 'delete_membre' membre.pk %}" class="btn btn-danger btn-sm">Supprimer</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination justify-content-center mt-4">
+            <ul class="pagination">
+                {% if membres.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page=1">Premier</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ membres.previous_page_number }}">Précédent</a></li>
+                {% endif %}
+                {% for num in membres.paginator.page_range %}
+                    <li class="page-item {% if num == membres.number %}active{% endif %}"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                {% endfor %}
+                {% if membres.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ membres.next_page_number }}">Suivant</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ membres.paginator.num_pages }}">Dernier</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const membresTable = document.getElementById('membresTable');
+            const rows = membresTable.getElementsByTagName('tr');
+    
+            searchInput.addEventListener('keyup', function() {
+                const filter = searchInput.value.toUpperCase();
+    
+                for (let i = 0; i < rows.length; i++) {
+                    const cells = rows[i].getElementsByTagName('td');
+                    let found = false;
+    
+                    for (let j = 0; j < cells.length; j++) {
+                        const cellText = cells[j].textContent.toUpperCase();
+    
+                        if (cellText.indexOf(filter) > -1) {
+                            found = true;
+                            break;
+                        }
+                    }
+    
+                    rows[i].style.display = found ? '' : 'none';
+                }
+            });
+        });
+    </script>
+    <style>
+
+    .card{
+        margin-bottom: 20px;
+    }
+        .bg-two {
+            background-color: #f0f0f0; /* Couleur d'arrière-plan */
+            border-radius: 10px; /* Bord arrondi */
+            padding: 20px; /* Espacement intérieur */
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Ombre */
+        }
+        
+    </style>
+</body>
+</html>
